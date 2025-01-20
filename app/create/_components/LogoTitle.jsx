@@ -1,12 +1,16 @@
 "use client";
 import Lookup from "@/app/_data/Lookup";
-import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import HeadingDescription from "./HeadingDescription";
 
 function LogoTitle({ onHandleChange }) {
-    const searchParams = useSearchParams();
-    const [title, setTitle] = useState(searchParams?.get("title") ?? "");
+    const [title, setTitle] = useState("");
+
+    const handleTitleChange = (e) => {
+        const newTitle = e.target.value;
+        setTitle(newTitle);
+        onHandleChange(newTitle);
+    };
 
     return (
         <div>
@@ -18,8 +22,8 @@ function LogoTitle({ onHandleChange }) {
                 type="text"
                 placeholder={Lookup.InputTitlePlaceHolder}
                 className="p-4 border rounded-lg mt-2 w-[40%] text-xl"
-                defaultValue={title}
-                onChange={(e) => onHandleChange(e.target.value)}
+                value={title}
+                onChange={handleTitleChange}
             />
         </div>
     );

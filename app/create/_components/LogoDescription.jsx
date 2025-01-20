@@ -1,7 +1,7 @@
 import Lookup from "@/app/_data/Lookup";
 import HeadingDescription from "./HeadingDescription";
 
-function LogoDescription({ onHandleChange }) {
+function LogoDescription({ onHandleChange, formData }) {
     return (
         <div className="my-10">
             <HeadingDescription
@@ -11,7 +11,8 @@ function LogoDescription({ onHandleChange }) {
             <input
                 type="text"
                 // placeholder={Lookup.InputTitlePlaceHolder}
-                className="p-4 border rounded-lg mt-2 w-[80%]"
+                className="p-4 border rounded-lg mt-2 w-[100%]"
+                value={formData?.desc || ""}
                 onChange={(e) => onHandleChange(e.target.value)}
             />
         </div>

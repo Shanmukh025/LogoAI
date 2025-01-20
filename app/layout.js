@@ -9,6 +9,9 @@ const host_grotesk = Host_Grotesk({
 export const metadata = {
     title: "LOGOAI",
     description: "LogoAI - Create Logos for Apps, Websites and Business",
+    icons: {
+        icon: "/vercel.svg",
+    },
 };
 
 export default function RootLayout({ children }) {

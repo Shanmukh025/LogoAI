@@ -3,8 +3,8 @@ import { useState } from "react";
 import Colors from "./Colors";
 import HeadingDescription from "./HeadingDescription";
 
-function LogoColorPalette({ onHandleChange }) {
-    const [selectedOption, setSelectedOption] = useState();
+function LogoColorPalette({ onHandleChange, formData }) {
+    const [selectedOption, setSelectedOption] = useState(formData?.palette);
 
     return (
         <div className="my-10">

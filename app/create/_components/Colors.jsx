@@ -1,6 +1,6 @@
 export default [
     {
-        name: "Vibrant Hues",
+        name: "Let AI Select",
         colors: [
             "#ff0000", // Red
             "#00ff00", // Green

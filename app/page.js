@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import Hero from "./_components/Hero";
 import Link from "next/link";
+import Hero from "./_components/Hero";
 
 export default function Home() {
     return (
@@ -95,7 +95,7 @@ export default function Home() {
                 <br />
                 <Button
                     variant="outline"
-                    className="text-black px-5 py-6 text-xl border-2 border-black"
+                    className="text-black px-5 py-6 text-xl border-2 border-primary"
                 >
                     Get Started
                 </Button>

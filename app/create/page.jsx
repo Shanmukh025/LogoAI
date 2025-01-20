@@ -21,21 +21,30 @@ function CreateLogo() {
     return (
         <div className="mt-28 p-10 border rounded-xl">
             {step == 1 ? (
-                <LogoTitle onHandleChange={(v) => onHandleChange("title", v)} />
+                <LogoTitle
+                    onHandleChange={(v) => onHandleChange("title", v)}
+                    formData={formData}
+                />
             ) : step == 2 ? (
                 <LogoDescription
                     onHandleChange={(v) => onHandleChange("desc", v)}
+                    formData={formData}
                 />
             ) : step == 3 ? (
                 <LogoColorPalette
                     onHandleChange={(v) => onHandleChange("palette", v)}
+                    formData={formData}
                 />
             ) : step == 4 ? (
                 <LogoDesign
                     onHandleChange={(v) => onHandleChange("design", v)}
+                    formData={formData}
                 />
             ) : step == 5 ? (
-                <LogoIdeas onHandleChange={(v) => onHandleChange("idea", v)} />
+                <LogoIdeas
+                    onHandleChange={(v) => onHandleChange("idea", v)}
+                    formData={formData}
+                />
             ) : null}
             <div className="flex items-center justify-between mt-10">
                 {step != 1 && (

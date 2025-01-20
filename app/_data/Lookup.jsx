@@ -10,12 +10,10 @@ export default {
     LogoDescDesc:
         "Share your ideas, themes and  inspirations that perfectly represents your business.",
     LogoIdeaTitle: "Select Your Design Idea",
-    LogoIdeaDesc:
-        "Choose a design style that aligns with your vision, or skip to receive a random suggestion.",
+    LogoIdeaDesc: "Choose a design style that aligns with your vision.",
     LogoColorPaletteTitle: "Choose Your Color Palette",
     LogoColorPaletteDesc:
         "Pick the colors that reflect your brands personality.",
-    LogoDesignTitle: "Choose Your Logo Style",
-    LogoDesignDesc:
-        "Select the type of logo design that best represents your brands unique identity",
+    LogoDesignTitle: "Choose Your Theme",
+    LogoDesignDesc: "Select a theme that represents your unique identity.",
 };

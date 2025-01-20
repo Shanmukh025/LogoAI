@@ -3,7 +3,7 @@ import Lookup from "@/app/_data/Lookup";
 import { useState } from "react";
 import HeadingDescription from "./HeadingDescription";
 
-function LogoTitle({ onHandleChange }) {
+function LogoTitle({ onHandleChange, formData }) {
     const [title, setTitle] = useState("");
 
     const handleTitleChange = (e) => {
@@ -22,7 +22,7 @@ function LogoTitle({ onHandleChange }) {
                 type="text"
                 placeholder={Lookup.InputTitlePlaceHolder}
                 className="p-4 border rounded-lg mt-2 w-[40%] text-xl"
-                value={title}
+                value={formData?.title || ""}
                 onChange={handleTitleChange}
             />
         </div>

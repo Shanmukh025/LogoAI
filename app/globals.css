@@ -95,3 +95,40 @@ body {
     transform: scaleY(0.5); /* Thin line effect */
     transform-origin: left;
 }
+
+.genbtn {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    background: black;
+    cursor: pointer;
+}
+
+.sparkle {
+    fill: white;
+    transition: all 400ms ease;
+}
+
+.text {
+    font-weight: 600;
+    color: white;
+    transition: all 400ms ease;
+    font-size: 19px;
+}
+
+.genbtn:hover {
+    background: linear-gradient(0deg, black);
+    /* transform: translateY(-2px); */
+}
+
+.genbtn:hover .text {
+    color: white;
+    transform: scale(1.03);
+}
+
+.genbtn:hover .sparkle {
+    fill: white;
+    transform: scale(1.1);
+}

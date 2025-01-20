@@ -18,7 +18,7 @@ function Hero() {
             </p>
             <br />
             <h2 className="text-2xl text-center font-bold">
-                Transform your Vision using LogoAI!
+                Transform your Vision with LogoAI!
             </h2>
             <Link href={"/create?logo"}>
                 {" "}

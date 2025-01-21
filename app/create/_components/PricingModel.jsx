@@ -1,9 +1,19 @@
 import Lookup from "@/app/_data/Lookup";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { useEffect } from "react";
 import HeadingDescription from "./HeadingDescription";
+import { SignInButton, useUser } from "@clerk/nextjs";
 
-function PricingModel() {
+function PricingModel({ formData }) {
+    const user = useUser();
+    useEffect(() => {
+        console.log("Success", formData);
+        if (formData?.title && typeof window !== "undefined") {
+            localStorage.setItem("formData", JSON.stringify(formData));
+        }
+    }, [formData]);
+
     return (
         <div>
             <HeadingDescription
@@ -30,7 +40,15 @@ function PricingModel() {
                                 </h2>
                             ))}
                         </div>
-                        <Button className="mt-5">{pricing.button}</Button>
+                        {user ? (
+                            <Button className="mt-5">{pricing.button}</Button>
+                        ) : (
+                            <SignInButton mode="modal">
+                                <Button className="mt-5">
+                                    {pricing.button}
+                                </Button>
+                            </SignInButton>
+                        )}
                     </div>
                 ))}
             </div>

@@ -7,7 +7,7 @@ const host_grotesk = Host_Grotesk({
 });
 
 export const metadata = {
-    title: "LOGOAI",
+    title: "LogoAI - AI Logo Creator",
     description: "LogoAI - Create Logos for Apps, Websites and Business",
     icons: {
         icon: "/vercel.svg",

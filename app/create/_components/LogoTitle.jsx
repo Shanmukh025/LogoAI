@@ -21,7 +21,7 @@ function LogoTitle({ onHandleChange, formData }) {
             <input
                 type="text"
                 placeholder={Lookup.InputTitlePlaceHolder}
-                className="p-4 border rounded-lg mt-2 w-[100%] text-xl"
+                className="p-4 border-2 rounded-lg mt-2 w-[100%] text-xl"
                 value={formData?.title || ""}
                 onChange={handleTitleChange}
             />

@@ -64,7 +64,7 @@ function LogoIdea({ formData, onHandleChange }) {
                     }}
                     className={`p-2 rounded-full border px-3 cursor-pointer
           hover:border-primary ${
-              selectedOption == "Let AI Select the best idea" &&
+              selectedOption == "Let AI Select the Best Idea" &&
               "border-primary"
           }`}
                 >

@@ -20,15 +20,25 @@ export default {
     LogoPricingModelDesc: "Generate Logos using your Favourite Models",
     pricingOption: [
         {
-            Title: "Basic",
+            title: "Basic",
             icon: "/globe.svg",
-            features: "Basic Features",
+            features: [
+                "• Basic Logos",
+                "• Unlimited Free Logos",
+                "• Longer Wait Times",
+                "• Limited Designs and Quality",
+            ],
             button: "Generate Free",
         },
         {
-            Title: "Premium",
-            icon: "/vercel.svg",
-            features: "Premium Features",
+            title: "Premium",
+            icon: "/window.svg",
+            features: [
+                "• Premium Logos",
+                "• Unlimited Premium Logos",
+                "• Shorter Wait Times",
+                "• Higher Quality and Designs",
+            ],
             button: "Generate for 1 Credit",
         },
     ],

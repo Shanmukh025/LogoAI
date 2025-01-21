@@ -20,7 +20,7 @@ function CreateLogo() {
         console.log("onHandleChange", formData);
     };
     return (
-        <div className="mt-28 p-10 border rounded-xl">
+        <div className="mt-28 p-10 border-2 border-black-500 rounded-xl">
             {step == 1 ? (
                 <LogoTitle
                     onHandleChange={(v) => onHandleChange("title", v)}

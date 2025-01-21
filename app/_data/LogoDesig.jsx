@@ -3,13 +3,13 @@ export default [
         // chatGpt
         title: "Minimalist Brand Logos",
         image: "/design_13.jpg",
-        prompt: "Design a set of minimalist logos that focus on simplicity and elegance, suitable for luxury or tech brands.",
+        prompt: "Design a set of minimalist logos that focus on simplicity and elegance.",
     },
     {
         // chatGpt
         title: "Luxury Fashion Logos",
         image: "/design_10.png",
-        prompt: "Design a sophisticated and elegant logo for a luxury fashion brand, incorporating sleek typography and gold accents.",
+        prompt: "Design a sophisticated and elegant logo for a luxury fashion brand, incorporating sleek typography.",
     },
     {
         // chatGpt
@@ -33,6 +33,6 @@ export default [
         // chatGpt
         title: "Wellness and Calm Logos",
         image: "/design_11.jpg",
-        prompt: "Create a soothing and harmonious logo for a using calming colors and serene design elements usually like a spa brand.",
+        prompt: "Create a soothing and harmonious logo for a using calming colors and serene, soothing design elements.",
     },
 ];

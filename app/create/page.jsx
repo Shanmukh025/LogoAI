@@ -7,6 +7,7 @@ import LogoDescription from "./_components/LogoDescription";
 import LogoDesign from "./_components/LogoDesign";
 import LogoIdeas from "./_components/LogoIdeas";
 import LogoTitle from "./_components/LogoTitle";
+import PricingModel from "./_components/PricingModel";
 
 function CreateLogo() {
     const [step, setStep] = useState(1);
@@ -43,6 +44,11 @@ function CreateLogo() {
             ) : step == 5 ? (
                 <LogoIdeas
                     onHandleChange={(v) => onHandleChange("idea", v)}
+                    formData={formData}
+                />
+            ) : step == 6 ? (
+                <PricingModel
+                    onHandleChange={(v) => onHandleChange("pricing", v)}
                     formData={formData}
                 />
             ) : null}

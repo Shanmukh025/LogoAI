@@ -5,7 +5,7 @@ import { Loader2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import HeadingDescription from "./HeadingDescription";
 
-function LogoIdea({ formData, onHandleInputChange }) {
+function LogoIdea({ formData, onHandleChange }) {
     const [ideas, setIdeas] = useState();
     const [loading, setLoading] = useState(false);
     const [selectedOption, setSelectedOption] = useState(formData?.idea);
@@ -23,7 +23,7 @@ function LogoIdea({ formData, onHandleInputChange }) {
             .replace("{logoDesc}", formData.desc)
             .replace("{logoPrompt}", formData.design.prompt);
 
-        console.log(PROMPT);
+        // console.log(PROMPT);
         const result = await axios.post("/api/ai-design-ideas", {
             prompt: PROMPT,
         });
@@ -49,7 +49,7 @@ function LogoIdea({ formData, onHandleInputChange }) {
                             key={index}
                             onClick={() => {
                                 setSelectedOption(item);
-                                onHandleInputChange(item);
+                                onHandleChange(item);
                             }}
                             className={`p-2 rounded-full border px-3 cursor-pointer
           hover:border-primary ${selectedOption == item && "border-primary"}`}
@@ -59,8 +59,8 @@ function LogoIdea({ formData, onHandleInputChange }) {
                     ))}
                 <h2
                     onClick={() => {
-                        setSelectedOption("Let AI Select the best idea");
-                        onHandleInputChange("Let AI Select the best idea");
+                        setSelectedOption("Let AI Select the Best Idea");
+                        onHandleChange("Let AI Select the Best Idea");
                     }}
                     className={`p-2 rounded-full border px-3 cursor-pointer
           hover:border-primary ${

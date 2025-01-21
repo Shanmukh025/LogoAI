@@ -16,4 +16,20 @@ export default {
         "Pick the colors that reflect your brands personality.",
     LogoDesignTitle: "Choose Your Theme",
     LogoDesignDesc: "Select a theme that represents your unique identity.",
+    LogoPricingModelTitle: "Select Your AI Model",
+    LogoPricingModelDesc: "Generate Logos using your Favourite Models",
+    pricingOption: [
+        {
+            Title: "Basic",
+            icon: "/globe.svg",
+            features: "Basic Features",
+            button: "Generate Free",
+        },
+        {
+            Title: "Premium",
+            icon: "/vercel.svg",
+            features: "Premium Features",
+            button: "Generate for 1 Credit",
+        },
+    ],
 };

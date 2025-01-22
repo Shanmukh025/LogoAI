@@ -6,7 +6,7 @@ import HeadingDescription from "./HeadingDescription";
 import { SignInButton, useUser } from "@clerk/nextjs";
 
 function PricingModel({ formData }) {
-    const user = useUser();
+    const { user } = useUser();
     useEffect(() => {
         console.log("Success", formData);
         if (formData?.title && typeof window !== "undefined") {

@@ -73,13 +73,13 @@ function CreateLogo() {
                     </Button>
                 </div>
             </div>
-            <div className="text-center">
+            {/* <div className="text-center">
                 <Button className="text-primary text-xl my-12" variant="link">
                     <Link href="https://shanmukh25.vercel.app/" target="_blank">
                         Developed by Shanmukh.
                     </Link>
                 </Button>
-            </div>
+            </div> */}
         </div>
     );
 }

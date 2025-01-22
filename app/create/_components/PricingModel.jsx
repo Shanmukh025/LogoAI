@@ -43,7 +43,12 @@ function PricingModel({ formData }) {
                         {user ? (
                             <Button className="mt-5">{pricing.button}</Button>
                         ) : (
-                            <SignInButton mode="modal">
+                            <SignInButton
+                                mode="modal"
+                                forceRedirectUrl={
+                                    "/generate-logo?type=" + pricing.title
+                                }
+                            >
                                 <Button className="mt-5">
                                     {pricing.button}
                                 </Button>

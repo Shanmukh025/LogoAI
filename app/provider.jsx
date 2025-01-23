@@ -1,11 +1,13 @@
 "use client";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "./_components/Header";
+import { UserDetailContext } from "./_context/UserDetailContext";
 
 function Provider({ children }) {
     const { user } = useUser();
+    const [userDetail, setUserDetail] = useState();
 
     useEffect(() => {
         user && CheckUserAuth();
@@ -23,13 +25,16 @@ function Provider({ children }) {
                 userEmail,
             });
             console.log(result.data);
+            setUserDetail(result.data);
         } catch (e) {}
     };
 
     return (
         <div>
-            <Header />
-            <div className="px-10 lg:px-32 xl:px-48 p-4">{children}</div>
+            <UserDetailContext.Provider value={{ userDetail, setUserDetail }}>
+                <Header />
+                <div className="px-10 lg:px-32 xl:px-48 p-4">{children}</div>
+            </UserDetailContext.Provider>
         </div>
     );
 }

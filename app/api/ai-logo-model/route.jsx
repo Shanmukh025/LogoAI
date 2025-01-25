@@ -1,29 +1,28 @@
 import { AILogoPrompt } from "@/configs/Aimodel";
+import { db } from "@/configs/firebase";
 import axios from "axios";
-import { setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
 import Replicate from "replicate";
 
 export async function POST(req) {
-    const { prompt, email, title, desc, type } = await req.json();
-    let base64ImagewithMime = "";
+    const { prompt, email, title, desc, type, userCredits } = await req.json();
+    let base64ImagewithMime = ""; // Correctly declare the variable here
     const replicate = new Replicate({
         auth: process.env.REPLICATE_API_TOKEN,
     });
 
     try {
         const AIPromptResult = await AILogoPrompt.sendMessage(prompt);
-        console.log(JSON.parse(AIPromptResult.response.text()).prompt);
         const AIPrompt = JSON.parse(AIPromptResult.response.text()).prompt;
 
-        if (type == "Basic") {
+        if (type === "Basic") {
             const response = await axios.post(
                 "https://api-inference.huggingface.co/models/strangerzonehf/Flux-Midjourney-Mix2-LoRA",
                 AIPrompt,
                 {
                     headers: {
-                        Authorization:
-                            "Bearer " + process.env.HUGGING_FACE_API_KEY,
+                        Authorization: `Bearer ${process.env.HUGGING_FACE_API_KEY}`,
                         "Content-Type": "application/json",
                     },
                     responseType: "arraybuffer",
@@ -31,8 +30,7 @@ export async function POST(req) {
             );
             const buffer = Buffer.from(response.data, "binary");
             const base64Image = buffer.toString("base64");
-            const base64ImagewithMime = `data:image/png;base64,${base64Image}`;
-            console.log(base64ImagewithMime);
+            base64ImagewithMime = `data:image/png;base64,${base64Image}`; // Assign correctly
         } else {
             const output = await replicate.run(
                 "bytedance/hyper-flux-8step:81946b1e09b256c543b35f37333a30d0d02ee2cd8c4f77cd915873a1ca622bad",
@@ -48,25 +46,36 @@ export async function POST(req) {
                     },
                 }
             );
-            console.log(output);
             base64ImagewithMime = await ConvertImageToBase64(output);
+
+            // Update the user's credits
+            const docRef = doc(db, "users", email);
+            await updateDoc(docRef, {
+                credits: Number(userCredits) - 1,
+            });
         }
 
-        try {
-            await setDoc(
-                doc(db, "users", email, "logos", Date.now().toString(), {
-                    image: base64ImagewithMime,
-                    title: title,
-                    desc: desc,
-                })
-            );
-        } catch (e) {
-            console.log(e);
-        }
+        // Store image details in Firestore
+        const logoDocRef = doc(
+            db,
+            "users",
+            email,
+            "logos",
+            Date.now().toString()
+        );
+        await setDoc(logoDocRef, {
+            image: base64ImagewithMime,
+            title: title,
+            desc: desc,
+        });
 
         return NextResponse.json({ image: base64ImagewithMime });
     } catch (e) {
-        return NextResponse.json({ error: e.message });
+        console.error("Error:", e);
+        return NextResponse.json(
+            { error: e.message || "Internal Server Error" },
+            { status: 500 }
+        );
     }
 }
 

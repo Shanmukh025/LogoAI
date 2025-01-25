@@ -5,9 +5,10 @@ import { useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { UserDetailContext } from "../_context/UserDetailContext";
 import Prompt from "../_data/Prompt";
+import { Button } from "@/components/ui/button";
 
 function GenerateLogo() {
-    const { userDetail, setUserDetail } = useContext(UserDetailContext);
+    const { userDetail } = useContext(UserDetailContext);
     const [formData, setFormData] = useState();
     const [loading, setLoading] = useState(false);
     const [logoImage, setLogoImage] = useState();
@@ -15,7 +16,7 @@ function GenerateLogo() {
     const modelType = searchParams.get("type");
 
     useEffect(() => {
-        if (typeof window != undefined && userDetail?.email) {
+        if (typeof window !== "undefined" && userDetail?.email) {
             const storage = localStorage.getItem("formData");
             if (storage) {
                 setFormData(JSON.parse(storage));
@@ -41,23 +42,59 @@ function GenerateLogo() {
 
         console.log(PROMPT);
 
-        const result = await axios.post("/api/ai-logo-model", {
-            prompt: PROMPT,
-            email: userDetail.email,
-            title: formData.title,
-            desc: formData.desc,
-            type: modelType,
-        });
-        console.log(result?.data);
-        setLogoImage(result.data?.image);
-        setLoading(false);
+        try {
+            const result = await axios.post("/api/ai-logo-model", {
+                prompt: PROMPT,
+                email: userDetail.email,
+                title: formData.title,
+                desc: formData.desc,
+                type: modelType,
+                userCredits: userDetail.credits,
+            });
+            console.log(result?.data);
+            setLogoImage(result.data?.image);
+        } catch (error) {
+            console.error("Error generating logo:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const downloadImage = () => {
+        if (logoImage) {
+            const link = document.createElement("a");
+            link.href = logoImage;
+            link.download = `${formData.title || "logo"}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     };
 
     return (
-        <div>
-            <h2>{loading && "Loading..It may take a couple of minutes..."}</h2>
-            {!loading && (
-                <Image src={logoImage} alt="logo" height={300} width={300} />
+        <div className="flex flex-col items-center justify-center p-4">
+            {loading ? (
+                <h2 className="text-lg font-semibold text-gray-700">
+                    Loading... It may take a couple of minutes...
+                </h2>
+            ) : logoImage ? (
+                <div className="text-center">
+                    <Image
+                        src={logoImage}
+                        alt="Generated Logo"
+                        height={300}
+                        width={300}
+                        className="rounded-lg shadow-md"
+                    />
+                    <div className="flex justify-center gap-2 my-8">
+                        <Button onClick={downloadImage}>Download</Button>
+                        <Button variant="outline">Dashboard</Button>
+                    </div>
+                </div>
+            ) : (
+                <h2 className="text-lg font-semibold text-gray-700">
+                    Error Generating Logo. Fill The Details Again.
+                </h2>
             )}
         </div>
     );

@@ -1,14 +1,14 @@
 import Lookup from "@/app/_data/Lookup";
 import { Button } from "@/components/ui/button";
+import { SignInButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect } from "react";
 import HeadingDescription from "./HeadingDescription";
-import { SignInButton, useUser } from "@clerk/nextjs";
 
 function PricingModel({ formData }) {
     const { user } = useUser();
     useEffect(() => {
-        console.log("Success", formData);
         if (formData?.title && typeof window !== "undefined") {
             localStorage.setItem("formData", JSON.stringify(formData));
         }
@@ -41,7 +41,11 @@ function PricingModel({ formData }) {
                             ))}
                         </div>
                         {user ? (
-                            <Button className="mt-5">{pricing.button}</Button>
+                            <Link href={"/generate-logo?type=" + pricing.title}>
+                                <Button className="mt-5">
+                                    {pricing.button}
+                                </Button>
+                            </Link>
                         ) : (
                             <SignInButton
                                 mode="modal"

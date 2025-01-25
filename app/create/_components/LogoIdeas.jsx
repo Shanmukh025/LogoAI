@@ -28,7 +28,6 @@ function LogoIdea({ formData, onHandleChange }) {
             prompt: PROMPT,
         });
 
-        console.log(result.data);
         !ideas && setIdeas(result.data.ideas);
         setLoading(false);
     };

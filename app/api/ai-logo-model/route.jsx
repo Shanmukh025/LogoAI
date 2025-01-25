@@ -67,6 +67,7 @@ export async function POST(req) {
             image: base64ImagewithMime,
             title: title,
             desc: desc,
+            type: type,
         });
 
         return NextResponse.json({ image: base64ImagewithMime });

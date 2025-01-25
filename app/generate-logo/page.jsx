@@ -11,6 +11,8 @@ function GenerateLogo() {
     const [formData, setFormData] = useState();
     const [loading, setLoading] = useState(false);
     const [logoImage, setLogoImage] = useState();
+    const searchParams = useSearchParams();
+    const modelType = searchParams.get("type");
 
     useEffect(() => {
         if (typeof window != undefined && userDetail?.email) {
@@ -44,6 +46,7 @@ function GenerateLogo() {
             email: userDetail.email,
             title: formData.title,
             desc: formData.desc,
+            type: modelType,
         });
         console.log(result?.data);
         setLogoImage(result.data?.image);

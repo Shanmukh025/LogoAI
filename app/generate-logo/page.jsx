@@ -1,20 +1,23 @@
 "use client";
+
+import { Button } from "@/components/ui/button";
 import axios from "axios";
+import { ArrowDownToLine, LayoutDashboard } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useContext, useEffect, useState, Suspense } from "react";
+import { Suspense, useContext, useEffect, useState } from "react";
+import { toast } from "sonner";
 import { UserDetailContext } from "../_context/UserDetailContext";
 import Prompt from "../_data/Prompt";
-import { Button } from "@/components/ui/button";
-import { ArrowDownToLine, LayoutDashboard } from "lucide-react";
-import { toast } from "sonner";
-import Link from "next/link";
 
-function GenerateLogoContent({ searchParams }) {
+// GenerateLogoContent component
+function GenerateLogoContent() {
     const { userDetail } = useContext(UserDetailContext);
     const [formData, setFormData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [logoImage, setLogoImage] = useState(null);
+    const searchParams = useSearchParams(); // Using the hook here for client-side use
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -133,11 +136,13 @@ function GenerateLogoContent({ searchParams }) {
     );
 }
 
-export default function GenerateLogo() {
-    const searchParams = useSearchParams();
+// Dynamically import GenerateLogo with SSR disabled
+const GenerateLogo = () => {
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <GenerateLogoContent searchParams={searchParams} />
+            <GenerateLogoContent />
         </Suspense>
     );
-}
+};
+
+export default GenerateLogo;

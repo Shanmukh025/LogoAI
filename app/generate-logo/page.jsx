@@ -6,6 +6,9 @@ import { useContext, useEffect, useState } from "react";
 import { UserDetailContext } from "../_context/UserDetailContext";
 import Prompt from "../_data/Prompt";
 import { Button } from "@/components/ui/button";
+import { ArrowDownToLine, LayoutDashboard } from "lucide-react";
+import { toast } from "sonner";
+import Link from "next/link";
 
 function GenerateLogo() {
     const { userDetail } = useContext(UserDetailContext);
@@ -32,6 +35,11 @@ function GenerateLogo() {
     }, [formData]);
 
     const GenerateAILogo = async () => {
+        if (modelType != "Basic" && userDetail.credits <= 0) {
+            toast("Not Enough Credits!");
+            return;
+        }
+
         setLoading(true);
         const PROMPT = Prompt.LOGO_PROMPT.replace("{logoTitle}", formData.title)
             .replace("{logoDesc}", formData.desc)
@@ -74,9 +82,20 @@ function GenerateLogo() {
     return (
         <div className="flex flex-col items-center justify-center p-4">
             {loading ? (
-                <h2 className="text-lg font-semibold text-gray-700">
-                    Loading... It may take a couple of minutes...
-                </h2>
+                <div className="text-center">
+                    <h2 className="text-xl text-primary font-semibold text-gray-700 mb-4">
+                        Generating Your Logo...
+                    </h2>
+                    <Image
+                        src="/loading.gif"
+                        alt="loading"
+                        height={500}
+                        width={500}
+                    />
+                    <h2 className="text-xl font-semibold text-gray-700 mb-4">
+                        Please Don't Refresh.
+                    </h2>
+                </div>
             ) : logoImage ? (
                 <div className="text-center">
                     <Image
@@ -87,14 +106,30 @@ function GenerateLogo() {
                         className="rounded-lg shadow-md"
                     />
                     <div className="flex justify-center gap-2 my-8">
-                        <Button onClick={downloadImage}>Download</Button>
-                        <Button variant="outline">Dashboard</Button>
+                        <Button onClick={downloadImage}>
+                            <ArrowDownToLine />
+                            Download
+                        </Button>
+                        <Link href="/dashboard" passHref>
+                            <Button variant="outline">
+                                <LayoutDashboard />
+                                Dashboard
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             ) : (
-                <h2 className="text-lg font-semibold text-gray-700">
-                    Error Generating Logo. Fill The Details Again.
-                </h2>
+                <div>
+                    <h2 className="text-lg font-semibold text-gray-700">
+                        ~ Error Generating Logo. Try Again!
+                    </h2>
+                    <Button
+                        variant="outline"
+                        className="my-6 flex justify-center"
+                    >
+                        Return Home
+                    </Button>
+                </div>
             )}
         </div>
     );

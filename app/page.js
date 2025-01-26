@@ -61,7 +61,7 @@ export default function Home() {
             {/* Testimonials */}
             <div className="py-16 px-8 md:px-16 lg:px-32 bg-gray-100">
                 <h2 className="text-primary text-4xl font-bold text-center mb-12">
-                    Choose Your Model
+                    Choose A.I Model
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="p-6 border rounded-lg shadow-md text-center bg-white">
@@ -79,7 +79,7 @@ export default function Home() {
                         <p className="text-gray-500 mt-4">5 Credits</p>
                         <p className="mt-4">Premium Logo Designs</p>
                         <p className="mt-4">Shorter wait times</p>
-                        <p className="mt-4">Generates in below 10 seconds</p>
+                        <p className="mt-4">Generates below 10 secs</p>
                         {/* <button className="mt-6 px-6 py-2 bg-blue-600 text-white rounded">
                             Select
                         </button> */}
@@ -95,7 +95,7 @@ export default function Home() {
                 <br />
                 <Button
                     variant="outline"
-                    className="text-black px-5 py-6 text-xl border-2 border-primary"
+                    className="text-black px-5 py-6 text-xl border-2 border-grey-500"
                 >
                     Get Started
                 </Button>

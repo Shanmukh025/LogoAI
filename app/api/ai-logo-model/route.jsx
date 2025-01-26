@@ -7,7 +7,7 @@ import Replicate from "replicate";
 
 export async function POST(req) {
     const { prompt, email, title, desc, type, userCredits } = await req.json();
-    let base64ImagewithMime = ""; // Correctly declare the variable here
+    let base64ImagewithMime = "";
     const replicate = new Replicate({
         auth: process.env.REPLICATE_API_TOKEN,
     });

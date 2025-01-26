@@ -14,7 +14,9 @@ function Header() {
             </Link>
             <div className="flex items-center gap-3">
                 {user ? (
-                    <Button>Dashboard</Button>
+                    <Link href="/dashboard" passHref>
+                        <Button>Dashboard</Button>
+                    </Link>
                 ) : (
                     <Button className="text-lg">Get Started</Button>
                 )}

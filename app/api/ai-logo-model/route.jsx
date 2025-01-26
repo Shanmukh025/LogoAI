@@ -30,7 +30,7 @@ export async function POST(req) {
             );
             const buffer = Buffer.from(response.data, "binary");
             const base64Image = buffer.toString("base64");
-            base64ImagewithMime = `data:image/png;base64,${base64Image}`; // Assign correctly
+            base64ImagewithMime = `data:image/png;base64,${base64Image}`;
         } else {
             const output = await replicate.run(
                 "bytedance/hyper-flux-8step:81946b1e09b256c543b35f37333a30d0d02ee2cd8c4f77cd915873a1ca622bad",

@@ -11,13 +11,12 @@ import { toast } from "sonner";
 import { UserDetailContext } from "../_context/UserDetailContext";
 import Prompt from "../_data/Prompt";
 
-// GenerateLogoContent component
 function GenerateLogoContent() {
     const { userDetail } = useContext(UserDetailContext);
     const [formData, setFormData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [logoImage, setLogoImage] = useState(null);
-    const searchParams = useSearchParams(); // Using the hook here for client-side use
+    const searchParams = useSearchParams();
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -47,11 +46,11 @@ function GenerateLogoContent() {
         try {
             const result = await axios.post("/api/ai-logo-model", {
                 prompt: PROMPT,
-                email: userDetail.email,
-                title: formData.title,
-                desc: formData.desc,
+                email: userDetail?.email,
+                title: formData?.title,
+                desc: formData?.desc,
                 type: modelType,
-                userCredits: userDetail.credits,
+                userCredits: userDetail?.credits,
             });
             setLogoImage(result.data?.image);
         } catch (error) {

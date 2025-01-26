@@ -44,15 +44,20 @@ function GenerateLogoContent() {
             .replace("{logoPrompt}", formData.design.prompt);
 
         try {
-            const result = await axios.post("/api/ai-logo-model", {
-                prompt: PROMPT,
-                email: userDetail?.email,
-                title: formData?.title,
-                desc: formData?.desc,
-                type: modelType,
-                userCredits: userDetail?.credits,
-                timeout: 100000,
-            });
+            const result = await axios.post(
+                "/api/ai-logo-model",
+                {
+                    prompt: PROMPT,
+                    email: userDetail?.email,
+                    title: formData?.title,
+                    desc: formData?.desc,
+                    type: modelType,
+                    userCredits: userDetail?.credits,
+                },
+                {
+                    timeout: 1000000,
+                }
+            );
             setLogoImage(result.data?.image);
         } catch (error) {
             console.error("Error generating logo:", error);

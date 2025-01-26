@@ -12,30 +12,24 @@ import Link from "next/link";
 
 function GenerateLogo() {
     const { userDetail } = useContext(UserDetailContext);
-    const [formData, setFormData] = useState();
+    const [formData, setFormData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [logoImage, setLogoImage] = useState();
+    const [logoImage, setLogoImage] = useState(null);
     const searchParams = useSearchParams();
-    const modelType = searchParams.get("type");
 
     useEffect(() => {
-        if (typeof window !== "undefined" && userDetail?.email) {
+        if (typeof window !== "undefined") {
             const storage = localStorage.getItem("formData");
             if (storage) {
                 setFormData(JSON.parse(storage));
-                console.log(JSON.parse(storage));
             }
         }
-    }, [userDetail]);
-
-    useEffect(() => {
-        if (formData?.title) {
-            GenerateAILogo();
-        }
-    }, [formData]);
+    }, []);
 
     const GenerateAILogo = async () => {
-        if (modelType != "Basic" && userDetail.credits <= 0) {
+        const modelType = searchParams.get("type");
+
+        if (modelType !== "Basic" && userDetail?.credits <= 0) {
             toast("Not Enough Credits!");
             return;
         }
@@ -48,8 +42,6 @@ function GenerateLogo() {
             .replace("{logoIdea}", formData.idea)
             .replace("{logoPrompt}", formData.design.prompt);
 
-        console.log(PROMPT);
-
         try {
             const result = await axios.post("/api/ai-logo-model", {
                 prompt: PROMPT,
@@ -59,7 +51,6 @@ function GenerateLogo() {
                 type: modelType,
                 userCredits: userDetail.credits,
             });
-            console.log(result?.data);
             setLogoImage(result.data?.image);
         } catch (error) {
             console.error("Error generating logo:", error);
@@ -67,6 +58,12 @@ function GenerateLogo() {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        if (formData?.title) {
+            GenerateAILogo();
+        }
+    }, [formData]);
 
     const downloadImage = () => {
         if (logoImage) {
@@ -80,7 +77,7 @@ function GenerateLogo() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center p-4">
+        <div className="flex flex-col items-center justify-center p-4 min-h-screen">
             {loading ? (
                 <div className="text-center">
                     <h2 className="text-2xl text-primary font-semibold text-gray-700 mb-4">

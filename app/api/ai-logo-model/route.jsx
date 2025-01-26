@@ -1,5 +1,5 @@
 import { AILogoPrompt } from "@/configs/Aimodel";
-import { db } from "@/configs/firebase";
+import { db } from "@/configs/Firebase";
 import axios from "axios";
 import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";

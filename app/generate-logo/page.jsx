@@ -51,6 +51,7 @@ function GenerateLogoContent() {
                 desc: formData?.desc,
                 type: modelType,
                 userCredits: userDetail?.credits,
+                timeout: 100000,
             });
             setLogoImage(result.data?.image);
         } catch (error) {

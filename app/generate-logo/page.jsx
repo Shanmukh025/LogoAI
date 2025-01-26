@@ -2,7 +2,7 @@
 import axios from "axios";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, Suspense } from "react";
 import { UserDetailContext } from "../_context/UserDetailContext";
 import Prompt from "../_data/Prompt";
 import { Button } from "@/components/ui/button";
@@ -10,12 +10,11 @@ import { ArrowDownToLine, LayoutDashboard } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
 
-function GenerateLogo() {
+function GenerateLogoContent({ searchParams }) {
     const { userDetail } = useContext(UserDetailContext);
     const [formData, setFormData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [logoImage, setLogoImage] = useState(null);
-    const searchParams = useSearchParams();
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -134,4 +133,11 @@ function GenerateLogo() {
     );
 }
 
-export default GenerateLogo;
+export default function GenerateLogo() {
+    const searchParams = useSearchParams();
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <GenerateLogoContent searchParams={searchParams} />
+        </Suspense>
+    );
+}

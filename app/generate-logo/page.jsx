@@ -83,16 +83,16 @@ function GenerateLogo() {
         <div className="flex flex-col items-center justify-center p-4">
             {loading ? (
                 <div className="text-center">
-                    <h2 className="text-xl text-primary font-semibold text-gray-700 mb-4">
+                    <h2 className="text-2xl text-primary font-semibold text-gray-700 mb-4">
                         Generating Your Logo...
                     </h2>
                     <Image
                         src="/loading.gif"
                         alt="loading"
-                        height={500}
-                        width={500}
+                        height={400}
+                        width={400}
                     />
-                    <h2 className="text-xl font-semibold text-gray-700 mb-4">
+                    <h2 className="my-5 text-xl font-semibold text-gray-700 mb-4">
                         Please Don't Refresh.
                     </h2>
                 </div>
@@ -123,12 +123,14 @@ function GenerateLogo() {
                     <h2 className="text-lg font-semibold text-gray-700">
                         ~ Error Generating Logo. Try Again!
                     </h2>
-                    <Button
-                        variant="outline"
-                        className="my-6 flex justify-center"
-                    >
-                        Return Home
-                    </Button>
+                    <Link href="/" passHref>
+                        <Button
+                            variant="outline"
+                            className="my-6 flex justify-center"
+                        >
+                            Return Home
+                        </Button>
+                    </Link>
                 </div>
             )}
         </div>

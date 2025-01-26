@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { UserButton, useUser } from "@clerk/nextjs";
+import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,7 +18,9 @@ function Header() {
                         <Button>Dashboard</Button>
                     </Link>
                 ) : (
-                    <Button className="text-lg">Get Started</Button>
+                    <SignInButton mode="modal" forceRedirectUrl={"/"}>
+                        <Button className="text-lg">Get Started</Button>
+                    </SignInButton>
                 )}
                 <UserButton />
             </div>

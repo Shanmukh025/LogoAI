@@ -3,11 +3,13 @@ import { Button } from "@/components/ui/button";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import HeadingDescription from "./HeadingDescription";
+import { UserDetailContext } from "@/app/_context/UserDetailContext";
 
 function PricingModel({ formData }) {
     const { user } = useUser();
+    const { userDetail, setUserDetail } = useContext(UserDetailContext);
     useEffect(() => {
         if (formData?.title && typeof window !== "undefined") {
             localStorage.setItem("formData", JSON.stringify(formData));
@@ -16,10 +18,18 @@ function PricingModel({ formData }) {
 
     return (
         <div>
-            <HeadingDescription
-                title={Lookup.LogoPricingModelTitle}
-                description={Lookup.LogoPricingModelDesc}
-            />
+            <div className="flex justify-between items-center">
+                <HeadingDescription
+                    title={Lookup.LogoPricingModelTitle}
+                    description={Lookup.LogoPricingModelDesc}
+                />
+                <div className="flex items-center gap-2">
+                    <Image src="coin.svg" alt="coin" width={30} height={30} />
+                    <h2 className="text-primary text-2xl font-bold ">
+                        {userDetail?.credits} Credits Left.
+                    </h2>
+                </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-5">
                 {Lookup.pricingOption.map((pricing, index) => (
                     <div

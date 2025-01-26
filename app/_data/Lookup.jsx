@@ -3,10 +3,10 @@ export default {
     HeroSubheading: "Imagine. Innovate. Create Logos.",
     HeroDesc:
         "Generate unique logos with our AI tools for apps, businesses, websites, and more!",
-    InputTitlePlaceHolder: "Enter Your Business Name.",
-    LogoTitle: "Add Logo Title",
+    InputTitlePlaceHolder: "Add Your Logo Title.",
+    LogoTitle: "Enter Your Business Name.",
     LogoTitleDesc: "Your Business or Website Name for your Logo",
-    LogoDescTitle: "Describe Your Idea and Theme",
+    LogoDescTitle: "Describe Your Bussiness Idea and Theme",
     LogoDescDesc:
         "Share your ideas, themes and  inspirations that perfectly represents your business.",
     LogoIdeaTitle: "Select Your Design Idea",
@@ -32,7 +32,7 @@ export default {
         },
         {
             title: "Premium",
-            icon: "/window.svg",
+            icon: "/next.svg",
             features: [
                 "• Premium Logos",
                 "• Unlimited Premium Logos",

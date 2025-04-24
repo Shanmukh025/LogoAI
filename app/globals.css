@@ -125,7 +125,7 @@ body {
 
 .genbtn:hover .text {
     color: white;
-    transform: scale(1.03);
+    transform: scale(1.1);
 }
 
 .genbtn:hover .sparkle {

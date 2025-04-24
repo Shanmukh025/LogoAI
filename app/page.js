@@ -97,7 +97,7 @@ export default function Home() {
                     variant="outline"
                     className="text-black px-5 py-6 text-xl border-2 border-grey-500"
                 >
-                    Get Started
+                    <Link href="/create?logo">Get Started</Link>
                 </Button>
             </div>
             <div className="text-center">

@@ -1,3 +1,4 @@
+import { UserDetailContext } from "@/app/_context/UserDetailContext";
 import Lookup from "@/app/_data/Lookup";
 import { Button } from "@/components/ui/button";
 import { SignInButton, useUser } from "@clerk/nextjs";
@@ -5,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect } from "react";
 import HeadingDescription from "./HeadingDescription";
-import { UserDetailContext } from "@/app/_context/UserDetailContext";
 
 function PricingModel({ formData }) {
     const { user } = useUser();

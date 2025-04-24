@@ -15,7 +15,7 @@ function Header() {
             <div className="flex items-center gap-3">
                 {user ? (
                     <Link href="/dashboard" passHref>
-                        <Button>Dashboard</Button>
+                        <Button className="text-lg">Dashboard</Button>
                     </Link>
                 ) : (
                     <SignInButton mode="modal" forceRedirectUrl={"/"}>

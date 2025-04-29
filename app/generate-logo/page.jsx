@@ -125,7 +125,7 @@ function GenerateLogoContent() {
             ) : (
                 <div>
                     <h2 className="text-lg font-semibold text-gray-700">
-                        ~ Error Generating Logo. Try Again!
+                        ~ Error Generating Logo. Try After Sometime!
                     </h2>
                     <Link href="/" passHref>
                         <Button

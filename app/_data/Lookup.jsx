@@ -21,7 +21,7 @@ export default {
     pricingOption: [
         {
             title: "Basic",
-            icon: "/globe.svg",
+            icon: "/basic.jpg",
             features: [
                 "• Basic Logos",
                 "• Unlimited Free Logos",
@@ -32,7 +32,7 @@ export default {
         },
         {
             title: "Premium",
-            icon: "/next.svg",
+            icon: "/premium2.jpg",
             features: [
                 "• Premium Logos",
                 "• Unlimited Premium Logos",

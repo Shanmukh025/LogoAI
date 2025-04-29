@@ -39,8 +39,8 @@ function PricingModel({ formData }) {
                         <Image
                             src={pricing.icon}
                             alt="pricing"
-                            width={60}
-                            height={60}
+                            width={150}
+                            height={150}
                         />
                         <h2 className="font-medium text-xl">{pricing.title}</h2>
                         <div>

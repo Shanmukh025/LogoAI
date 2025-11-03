@@ -20,7 +20,7 @@ export default {
     LogoPricingModelDesc: "Generate Logos using your Favourite Models",
     pricingOption: [
         {
-            title: "Basic",
+            title: "Basic(TEMPORARILY UNAVAILABLE)",
             icon: "/basic.jpg",
             features: [
                 "• Basic Logos",
@@ -28,7 +28,7 @@ export default {
                 "• Longer Wait Times",
                 "• Limited Designs and Quality",
             ],
-            button: "Generate Free",
+            button: "Generate Free(TRY PREMIUM)",
         },
         {
             title: "Premium",
